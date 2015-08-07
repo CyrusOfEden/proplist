@@ -1,0 +1,19 @@
+language: elixir
+
+otp_release:
+  - 18.0
+
+elixir:
+  - 1.0.5
+
+notifications:
+  email: false
+
+before_script:
+  - mix local.hex --force
+  - mix deps.get
+
+script: mix test
+after_script:
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report
