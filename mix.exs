@@ -3,37 +3,25 @@ defmodule Proplist.Mixfile do
 
   def project do
     [app: :proplist,
-     description: "An analogue of Elixir's `Keyword` module for Erlang `:proplists`.",
-     version: "0.1.0",
+     description: "Proplist provides the complete Keyword API, but for Proplists.",
+     version: "0.1.1",
      elixir: "~> 1.0",
      name: "Proplist",
-     source_url: "https://github.com/knrz/Proplist",
-     homepage_url: "https://github.com/knrz/Proplist",
+     source_url: "https://github.com/knrz/proplist",
+     homepage_url: "https://github.com/knrz/proplist",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
      package: [contributors: ["Kash Nouroozi"],
                licenses: ["MIT"],
-               links: %{"GitHub" => "https://github.com/knrz/Proplist"}
+               links: %{"GitHub" => "https://github.com/knrz/proplist"}
     ]]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
     []
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
     [{:inch_ex, only: :dev},
      {:ex_doc, only: :dev},
