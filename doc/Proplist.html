@@ -1,0 +1,1128 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+        <title>Proplist – Proplist v0.1.0</title>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc">
+
+    <link rel="stylesheet" href="dist/app.css">
+  </head>
+  <body>
+
+    
+    <div class="row row-offcanvas row-offcanvas-left">
+<section id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+  <p class="pull-right visible-xs">
+  <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  </p>
+
+  <h1 id="full_list_header">
+    
+      <a href="https://github.com/knrz/Proplist">Proplist v0.1.0</a>
+    
+  </h1>
+
+  <h2 id="sub_list_header">
+    
+    <a href="overview.html">Overview</a>
+  </h2>
+
+  <div class="nav">
+    
+      <span><a id="modules_list" href="#full_list">Modules</a></span>
+    
+    
+      <span role="presentation" class="disabled">Exceptions</span>
+    
+    
+      <span role="presentation" class="disabled">Protocols</span>
+    
+  </div>
+
+  <div id="search">
+    <div class="col-xs-10">
+      <div class="input-group input-group-sm">
+        <label for="search_field" class="sr-only">Search</label>
+        <input type="text" id="search_field" class="form-control" placeholder="Search" autocomplete="off" autofocus="autofocus" results="0">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-xs-10 -->
+    <div class="col-xs-2" id="spinning">
+      <span></span>
+    </div><!-- /.col-xs-2 -->
+  </div><!-- /#search .row -->
+
+  <script src="dist/sidebar_items.js" defer></script>
+
+  <ul id="full_list">
+  </ul>
+
+  <div id="no_results"></div>
+</section><!--/.sidebar-offcanvas -->
+<section id="content" class="col-xs-12 col-sm-9">
+
+
+      <div class="breadcrumbs">
+        <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+        Proplist v0.1.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="Proplist.html#content">Proplist</a>
+      </div>
+
+      <h1>
+        Proplist
+        
+      </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary_details">Summary</a></li>
+        
+        
+          <li><a href="#types_details">Types</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+      </ul>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>A proplist is a list of tuples where the first element
+of the tuple is a binary and the second element can be
+any value.</p>
+<p>A proplist may have duplicated props so it is not strictly
+a dictionary. However most of the functions in this module
+behave exactly as a dictionary and mimic the API defined
+by the <code class="inline">Dict</code> behaviour.</p>
+<p>For example, <a href="Proplist.html#get/3"><code class="inline">Proplist.get/3</code></a> will get the first entry matching
+the given prop, regardless if duplicated entries exist.
+Similarly, <a href="Proplist.html#put/3"><code class="inline">Proplist.put/3</code></a> and <a href="Proplist.html#delete/3"><code class="inline">Proplist.delete/3</code></a> ensure all
+duplicated entries for a given prop are removed when invoked.</p>
+<p>A handful of functions exist to handle duplicated props, in
+particular, <code class="inline">Enum.into/2</code> allows creating new proplist without
+removing duplicated props, <a href="#get_values/2"><code class="inline">get_values/2</code></a> returns all values for
+a given prop and <a href="#delete_first/2"><code class="inline">delete_first/2</code></a> deletes just one of the existing
+entries.</p>
+<p>Since a proplist list is simply a list, all the operations defined
+in <code class="inline">Enum</code> and <code class="inline">List</code> can be applied.</p>
+
+        </section>
+      
+
+      
+        <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L1" class="view_source">Source</a>
+      
+
+      
+        <section id="summary_details" class="details_list">
+          <h1>Summary</h1>
+          <table class="summary">
+            <tr>
+  <td class="summary_signature"><a href="#delete/2">delete(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Deletes the entries in the proplist list for a specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#delete/3">delete(proplist, prop, value)</a></td>
+  <td class="summary_synopsis"><p>Deletes the entries in the proplist list for a <code class="inline">prop</code> with <code class="inline">value</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#delete_first/2">delete_first(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Deletes the first entry in the proplist list for a specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#drop/2">drop(proplist, props)</a></td>
+  <td class="summary_synopsis"><p>Drops the given props from the proplist list</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#equal?/2">equal?(left, right)</a></td>
+  <td class="summary_synopsis"><p>Checks if two proplists are equal</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#fetch!/2">fetch!(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Fetches the value for specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#fetch/2">fetch(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Fetches the value for a specific <code class="inline">prop</code> and returns it in a tuple</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get/3">get(proplist, prop, default \\ nil)</a></td>
+  <td class="summary_synopsis"><p>Gets the value for a specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get_values/2">get_values(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Gets all values for a specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#has_prop?/2">has_prop?(proplist, prop)</a></td>
+  <td class="summary_synopsis"><p>Returns whether a given <code class="inline">prop</code> exists in the given <code class="inline">proplist</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#merge/2">merge(d1, d2)</a></td>
+  <td class="summary_synopsis"><p>Merges two proplist lists into one</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#merge/3">merge(d1, d2, fun)</a></td>
+  <td class="summary_synopsis"><p>Merges two proplist lists into one</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#new/0">new()</a></td>
+  <td class="summary_synopsis"><p>Returns an empty property list, i.e. an empty list</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#new/1">new(pairs)</a></td>
+  <td class="summary_synopsis"><p>Creates a proplist from an enumerable</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#new/2">new(pairs, transform)</a></td>
+  <td class="summary_synopsis"><p>Creates a proplist from an enumerable via the transformation function</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#pop/3">pop(proplist, prop, default \\ nil)</a></td>
+  <td class="summary_synopsis"><p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+list as well as the proplist list without <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#pop_first/3">pop_first(proplist, prop, default \\ nil)</a></td>
+  <td class="summary_synopsis"><p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+list as well as the proplist list without that particular occurrence
+of <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#proplist?/1">proplist?(arg1)</a></td>
+  <td class="summary_synopsis"><p>Checks if the given argument is a proplist list or not</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#props/1">props(proplist)</a></td>
+  <td class="summary_synopsis"><p>Returns all props from the proplist list</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#put/3">put(proplist, prop, value)</a></td>
+  <td class="summary_synopsis"><p>Puts the given <code class="inline">value</code> under <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#put_new/3">put_new(proplist, prop, value)</a></td>
+  <td class="summary_synopsis"><p>Puts the given <code class="inline">value</code> under <code class="inline">prop</code> unless the entry <code class="inline">prop</code>
+already exists</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#split/2">split(proplist, props)</a></td>
+  <td class="summary_synopsis"><p>Takes all entries corresponding to the given props and extracts them into a
+separate proplist list</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#take/2">take(proplist, props)</a></td>
+  <td class="summary_synopsis"><p>Takes all entries corresponding to the given props and returns them in a new
+proplist list</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#update!/3">update!(proplist, prop, fun)</a></td>
+  <td class="summary_synopsis"><p>Updates the <code class="inline">prop</code> with the given function</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#update/4">update(list1, prop, initial, fun)</a></td>
+  <td class="summary_synopsis"><p>Updates the <code class="inline">prop</code> with the given function</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#values/1">values(proplist)</a></td>
+  <td class="summary_synopsis"><p>Returns all values from the proplist list</p>
+</td>
+</tr>
+
+          </table>
+        </section>
+      
+
+      
+        <section id="types_details" class="details_list">
+          <h1>Types</h1>
+          <div class="type_detail">
+  <p class="typespec" id="t:prop/0">
+    <a href="#t:prop/0">prop</a> :: binary
+  </p>
+  
+</div>
+<div class="type_detail">
+  <p class="typespec" id="t:value/0">
+    <a href="#t:value/0">value</a> :: any
+  </p>
+  
+</div>
+<div class="type_detail">
+  <p class="typespec" id="t:t/0">
+    <a href="#t:t/0">t</a> :: [{<a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>}]
+  </p>
+  
+</div>
+<div class="type_detail">
+  <p class="typespec" id="t:t/1">
+    <a href="#t:t/1">t(value)</a> :: [{<a href="#t:prop/0">prop</a>, value}]
+  </p>
+  
+</div>
+
+        </section>
+      
+
+      
+        <section id="functions_details" class="details_list">
+          <h1>Functions</h1>
+          <section class="detail">
+  <div class="detail_header" id="delete/2">
+    <span class="signature"><strong>delete(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#delete/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>delete(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Deletes the entries in the proplist list for a specific <code class="inline">prop</code>.</p>
+<p>If the <code class="inline">prop</code> does not exist, returns the proplist list unchanged.
+Use <a href="#delete_first/2"><code class="inline">delete_first/2</code></a> to delete just the first entry in case of
+duplicated props.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.delete([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], &quot;a&quot;)
+[{&quot;b&quot;, 2}]
+
+iex&gt; Proplist.delete([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 3}], &quot;a&quot;)
+[{&quot;b&quot;, 2}]
+
+iex&gt; Proplist.delete([{&quot;b&quot;, 2}], &quot;a&quot;)
+[{&quot;b&quot;, 2}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L259" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="delete/3">
+    <span class="signature"><strong>delete(proplist, prop, value)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#delete/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>delete(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Deletes the entries in the proplist list for a <code class="inline">prop</code> with <code class="inline">value</code>.</p>
+<p>If no <code class="inline">prop</code> with <code class="inline">value</code> exists, returns the proplist list unchanged.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.delete([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], &quot;a&quot;, 1)
+[{&quot;b&quot;, 2}]
+
+iex&gt; Proplist.delete([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 3}], &quot;a&quot;, 3)
+[{&quot;a&quot;, 1}, {&quot;b&quot;, 2}]
+
+iex&gt; Proplist.delete([{&quot;b&quot;, 2}], &quot;a&quot;, 5)
+[{&quot;b&quot;, 2}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L235" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="delete_first/2">
+    <span class="signature"><strong>delete_first(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#delete_first/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>delete_first(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Deletes the first entry in the proplist list for a specific <code class="inline">prop</code>.</p>
+<p>If the <code class="inline">prop</code> does not exist, returns the proplist list unchanged.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.delete_first([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 3}], &quot;a&quot;)
+[{&quot;b&quot;, 2}, {&quot;a&quot;, 3}]
+
+iex&gt; Proplist.delete_first([{&quot;b&quot;, 2}], &quot;a&quot;)
+[{&quot;b&quot;, 2}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L278" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="drop/2">
+    <span class="signature"><strong>drop(proplist, props)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#drop/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Drops the given props from the proplist list.</p>
+<p>Duplicated props are preserved in the new proplist list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}]
+iex&gt; Proplist.drop(d, [&quot;b&quot;, &quot;d&quot;])
+[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}]
+
+iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}, {&quot;e&quot;, 5}]
+iex&gt; Proplist.drop(d, [&quot;b&quot;, &quot;d&quot;])
+[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}, {&quot;e&quot;, 5}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L535" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="equal?/2">
+    <span class="signature"><strong>equal?(left, right)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#equal?/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>equal?(<a href="#t:t/0">t</a>, <a href="#t:t/0">t</a>) :: boolean</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Checks if two proplists are equal.</p>
+<p>Two proplists are considered to be equal if they contain
+the same props and those props contain the same values.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.equal?([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], [{&quot;b&quot;, 2}, {&quot;a&quot;, 1}])
+true</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L336" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="fetch/2">
+    <span class="signature"><strong>fetch(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#fetch/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>fetch(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: {:ok, <a href="#t:value/0">value</a>} | :error</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Fetches the value for a specific <code class="inline">prop</code> and returns it in a tuple.</p>
+<p>If the <code class="inline">prop</code> does not exist, returns <code class="inline">:error</code>.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.fetch([{&quot;a&quot;, 1}], &quot;a&quot;)
+{:ok, 1}
+
+iex&gt; Proplist.fetch([{&quot;a&quot;, 1}], &quot;b&quot;)
+:error</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L136" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="fetch!/2">
+    <span class="signature"><strong>fetch!(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#fetch!/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>fetch!(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: <a href="#t:value/0">value</a> | no_return</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Fetches the value for specific <code class="inline">prop</code>.</p>
+<p>If <code class="inline">prop</code> does not exist, a <code class="inline">KeyError</code> is raised.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.fetch!([{&quot;a&quot;, 1}], &quot;a&quot;)
+1
+
+iex&gt; Proplist.fetch!([{&quot;a&quot;, 1}], &quot;b&quot;)
+** (KeyError) key &quot;b&quot; not found in: [{&quot;a&quot;, 1}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L158" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get/3">
+    <span class="signature"><strong>get(proplist, prop, default \\ nil)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>) :: <a href="#t:value/0">value</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Gets the value for a specific <code class="inline">prop</code>.</p>
+<p>If <code class="inline">prop</code> does not exist, return the default value (<code class="inline">nil</code> if no default value).</p>
+<p>If duplicated entries exist, the first one is returned.
+Use <a href="#get_values/2"><code class="inline">get_values/2</code></a> to retrieve all entries.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.get([{&quot;a&quot;, 1}], &quot;a&quot;)
+1
+
+iex&gt; Proplist.get([{&quot;a&quot;, 1}], &quot;b&quot;)
+nil
+
+iex&gt; Proplist.get([{&quot;a&quot;, 1}], &quot;b&quot;, 3)
+3</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L114" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get_values/2">
+    <span class="signature"><strong>get_values(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get_values/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get_values(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: [<a href="#t:value/0">value</a>]</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Gets all values for a specific <code class="inline">prop</code>.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.get_values([{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quot;)
+[1,2]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L175" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="has_prop?/2">
+    <span class="signature"><strong>has_prop?(proplist, prop)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#has_prop?/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>has_prop?(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>) :: boolean</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Returns whether a given <code class="inline">prop</code> exists in the given <code class="inline">proplist</code>.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.has_prop?([{&quot;a&quot;, 1}], &quot;a&quot;)
+true
+
+iex&gt; Proplist.has_prop?([{&quot;a&quot;, 1}], &quot;b&quot;)
+false</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L396" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="merge/2">
+    <span class="signature"><strong>merge(d1, d2)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#merge/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>merge(<a href="#t:t/0">t</a>, <a href="#t:t/0">t</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Merges two proplist lists into one.</p>
+<p>If they have duplicated props, the one given in the second argument wins.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.merge([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], [{&quot;a&quot;, 3}, {&quot;d&quot;, 4}]) |&gt; Enum.sort
+[{&quot;a&quot;, 3}, {&quot;b&quot;, 2}, {&quot;d&quot;, 4}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L352" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="merge/3">
+    <span class="signature"><strong>merge(d1, d2, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#merge/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>merge(<a href="#t:t/0">t</a>, <a href="#t:t/0">t</a>, (<a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>, <a href="#t:value/0">value</a> -> <a href="#t:value/0">value</a>)) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Merges two proplist lists into one.</p>
+<p>If they have duplicated props, the given function is invoked to solve conflicts.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.merge([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], [{&quot;a&quot;, 3}, {&quot;d&quot;, 4}], fn (_k, v1, v2) -&gt;
+...&gt;   v1 + v2
+...&gt; end)
+[{&quot;a&quot;, 4}, {&quot;b&quot;, 2}, {&quot;d&quot;, 4}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L371" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="new/0">
+    <span class="signature"><strong>new()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#new/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>new :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Returns an empty property list, i.e. an empty list.</p>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L49" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="new/1">
+    <span class="signature"><strong>new(pairs)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#new/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>new(<a href="http://elixir-lang.org/docs/stable/elixir/Enum.html#t:t/0">Enum.t</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Creates a proplist from an enumerable.</p>
+<p>Duplicated entries are removed, the latest one prevails.
+Unlike <code class="inline">Enum.into(enumerable, [])</code>,
+<code class="inline">Proplist.new(enumerable)</code> guarantees the props are unique.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.new([{&quot;b&quot;, 1}, {&quot;a&quot;, 2}])
+[{&quot;a&quot;, 2}, {&quot;b&quot;, 1}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L66" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="new/2">
+    <span class="signature"><strong>new(pairs, transform)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#new/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Creates a proplist from an enumerable via the transformation function.</p>
+<p>Duplicated entries are removed, the latest one prevails.
+Unlike <code class="inline">Enum.into(enumerable, [], fun)</code>,
+<code class="inline">Proplist.new(enumerable, fun)</code> guarantees the props are unique.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.new([&quot;a&quot;, &quot;b&quot;], fn (x) -&gt; {x, x} end) |&gt; Enum.sort
+[{&quot;a&quot;, &quot;a&quot;}, {&quot;b&quot;, &quot;b&quot;}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L85" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="pop/3">
+    <span class="signature"><strong>pop(proplist, prop, default \\ nil)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#pop/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+list as well as the proplist list without <code class="inline">prop</code>.</p>
+<p>All duplicated props are removed. See <a href="#pop_first/3"><code class="inline">pop_first/3</code></a> for
+removing only the first entry.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.pop [{&quot;a&quot;, 1}], &quot;a&quot;
+{1,[]}
+
+iex&gt; Proplist.pop [{&quot;a&quot;, 1}], &quot;b&quot;
+{nil,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop [{&quot;a&quot;, 1}], &quot;b&quot;, 3
+{3,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop [{&quot;a&quot;, 1}], &quot;b&quot;, 3
+{3,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop [{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quot;
+{1,[]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L564" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="pop_first/3">
+    <span class="signature"><strong>pop_first(proplist, prop, default \\ nil)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#pop_first/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+list as well as the proplist list without that particular occurrence
+of <code class="inline">prop</code>.</p>
+<p>Duplicated props are not removed.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}], &quot;a&quot;
+{1,[]}
+
+iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}], &quot;b&quot;
+{nil,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}], &quot;b&quot;, 3
+{3,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}], &quot;b&quot;, 3
+{3,[{&quot;a&quot;, 1}]}
+
+iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quot;
+{1,[{&quot;a&quot;, 2}]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L593" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="proplist?/1">
+    <span class="signature"><strong>proplist?(arg1)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#proplist?/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>proplist?(term) :: boolean</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Checks if the given argument is a proplist list or not.</p>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L38" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="props/1">
+    <span class="signature"><strong>props(proplist)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#props/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>props(<a href="#t:t/0">t</a>) :: [<a href="#t:prop/0">prop</a>]</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Returns all props from the proplist list.</p>
+<p>Duplicated props appear duplicated in the final list of props.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.props([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}])
+[&quot;a&quot;, &quot;b&quot;]
+
+iex&gt; Proplist.props([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 3}])
+[&quot;a&quot;, &quot;b&quot;, &quot;a&quot;]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L199" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="put/3">
+    <span class="signature"><strong>put(proplist, prop, value)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#put/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>put(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Puts the given <code class="inline">value</code> under <code class="inline">prop</code>.</p>
+<p>If a previous value is already stored, all entries are
+removed and the value is overridden.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.put([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], &quot;a&quot;, 3)
+[{&quot;a&quot;, 3}, {&quot;b&quot;, 2}]
+
+iex&gt; Proplist.put([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 4}], &quot;a&quot;, 3)
+[{&quot;a&quot;, 3}, {&quot;b&quot;, 2}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L298" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="put_new/3">
+    <span class="signature"><strong>put_new(proplist, prop, value)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#put_new/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>put_new(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Puts the given <code class="inline">value</code> under <code class="inline">prop</code> unless the entry <code class="inline">prop</code>
+already exists.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.put_new([{&quot;a&quot;, 1}], &quot;b&quot;, 2)
+[{&quot;b&quot;, 2}, {&quot;a&quot;, 1}]
+
+iex&gt; Proplist.put_new([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], &quot;a&quot;, 3)
+[{&quot;a&quot;, 1}, {&quot;b&quot;, 2}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L316" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="split/2">
+    <span class="signature"><strong>split(proplist, props)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#split/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Takes all entries corresponding to the given props and extracts them into a
+separate proplist list.</p>
+<p>Returns a tuple with the new list and the old list with removed props.</p>
+<p>Keys for which there are no entires in the proplist list are ignored.</p>
+<p>Entries with duplicated props end up in the same proplist list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}]
+iex&gt; Proplist.split(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
+{[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}], [{&quot;b&quot;, 2}, {&quot;d&quot;, 4}]}
+
+iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}, {&quot;e&quot;, 5}]
+iex&gt; Proplist.split(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
+{[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}, {&quot;e&quot;, 5}], [{&quot;b&quot;, 2}, {&quot;d&quot;, 4}]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L485" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="take/2">
+    <span class="signature"><strong>take(proplist, props)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#take/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Takes all entries corresponding to the given props and returns them in a new
+proplist list.</p>
+<p>Duplicated props are preserved in the new proplist list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}]
+iex&gt; Proplist.take(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
+[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}]
+
+iex&gt; d = [{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;c&quot;, 3}, {&quot;d&quot;, 4}, {&quot;e&quot;, 5}]
+iex&gt; Proplist.take(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
+[{&quot;a&quot;, 1}, {&quot;c&quot;, 3}, {&quot;e&quot;, 5}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L515" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="update/4">
+    <span class="signature"><strong>update(list1, prop, initial, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#update/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>update(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>, (<a href="#t:value/0">value</a> -> <a href="#t:value/0">value</a>)) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Updates the <code class="inline">prop</code> with the given function.</p>
+<p>If the <code class="inline">prop</code> does not exist, inserts the given <code class="inline">initial</code> value.</p>
+<p>If there are duplicated props, they are all removed and only the first one
+is updated.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.update([{&quot;a&quot;, 1}], &quot;a&quot;, 13, &amp;(&amp;1 * 2))
+[{&quot;a&quot;, 2}]
+
+iex&gt; Proplist.update([{&quot;a&quot;, 1}], &quot;b&quot;, 11, &amp;(&amp;1 * 2))
+[{&quot;a&quot;, 1}, {&quot;b&quot;, 11}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L452" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="update!/3">
+    <span class="signature"><strong>update!(proplist, prop, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#update!/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>update!(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, (<a href="#t:value/0">value</a> -> <a href="#t:value/0">value</a>)) :: <a href="#t:t/0">t</a> | no_return</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Updates the <code class="inline">prop</code> with the given function.</p>
+<p>If the <code class="inline">prop</code> does not exist, raises <code class="inline">KeyError</code>.</p>
+<p>If there are duplicated props, they are all removed and only the first one
+is updated.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.update!([{&quot;a&quot;, 1}], &quot;a&quot;, &amp;(&amp;1 * 2))
+[{&quot;a&quot;, 2}]
+
+iex&gt; Proplist.update!([{&quot;a&quot;, 1}], &quot;b&quot;, &amp;(&amp;1 * 2))
+** (KeyError) key &quot;b&quot; not found in: [{&quot;a&quot;, 1}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L418" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="values/1">
+    <span class="signature"><strong>values(proplist)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#values/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>values(<a href="#t:t/0">t</a>) :: [<a href="#t:value/0">value</a>]</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Returns all values from the proplist list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.values([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}])
+[1,2]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/Proplist/blob/master/lib/proplist.ex#L213" class="view_source">Source</a>
+  
+</section>
+
+        </section>
+      
+
+      
+
+      
+      </section> <!--/content -->
+</div><!--/row -->
+
+    <script src="dist/app.js"></script>
+  </body>
+</html>
+
