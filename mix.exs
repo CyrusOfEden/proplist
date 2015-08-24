@@ -4,8 +4,11 @@ defmodule Proplist.Mixfile do
   def project do
     [app: :proplist,
      description: "An analogue of Elixir's `Keyword` module for Erlang `:proplists`.",
-     version: "0.0.1",
+     version: "0.1.0",
      elixir: "~> 1.0",
+     name: "Proplist",
+     source_url: "https://github.com/knrz/Proplist",
+     homepage_url: "https://github.com/knrz/Proplist",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
