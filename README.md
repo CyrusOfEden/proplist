@@ -2,6 +2,7 @@ Proplist
 ========
 
 [![Build Status](https://travis-ci.org/knrz/proplist.svg?branch=master)](https://travis-ci.org/knrz/proplist)
+[![Inline docs](http://inch-ci.org/github/knrz/proplist.svg)](http://inch-ci.org/github/knrz/proplist)
 
 Proplist provides the complete Keyword API, but for Proplists.
 
