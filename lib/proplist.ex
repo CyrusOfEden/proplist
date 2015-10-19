@@ -155,7 +155,7 @@ defmodule Proplist do
   value to be stored under `prop`.
 
   The returned value is a tuple with the "get" value returned by `fun` and a new
-  keyword list with the updated value under `prop`.
+  proplist with the updated value under `prop`.
 
   ## Examples
 
@@ -629,6 +629,33 @@ defmodule Proplist do
   """
   def pop(proplist, prop, default \\ nil) when is_list(proplist) do
     {get(proplist, prop, default), delete(proplist, prop)}
+  end
+
+  @doc """
+  Returns the first value associated with `prop` in the proplist
+  as well as the proplist without `prop`.
+
+  All duplicated props are removed. See `pop_first/3` for
+  removing only the first entry.
+
+  ## Examples
+
+      iex> proplist = [{"a", 1}]
+      iex> fun = fn ->
+      ...>   :result
+      ...> end
+      iex> Proplist.pop_lazy(proplist, "a", fun)
+      {1, []}
+      iex> Proplist.pop_lazy(proplist, "b", fun)
+      {:result, [{"a", 1}]}
+
+  """
+  @spec pop_lazy(t, prop, (() -> value)) :: {value, t}
+  def pop_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case fetch(proplist, prop) do
+      {:ok, value} -> {value, delete(proplist, prop)}
+      :error -> {fun.(), proplist}
+    end
   end
 
   @doc """
