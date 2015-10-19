@@ -4,8 +4,8 @@ defmodule Proplist.Mixfile do
   def project do
     [app: :proplist,
      description: "Proplist provides the complete Keyword API, but for Proplists.",
-     version: "0.1.1",
-     elixir: "~> 1.0",
+     version: "0.2.0",
+     elixir: "~> 1.1",
      name: "Proplist",
      source_url: "https://github.com/knrz/proplist",
      homepage_url: "https://github.com/knrz/proplist",

@@ -119,6 +119,72 @@ defmodule Proplist do
   end
 
   @doc """
+  Gets the value for a specific `prop`.
+
+  If `prop` does not exist, lazily evaluates `fun` and returns its result.
+
+  If duplicated entries exist, the first one is returned.
+  Use `get_values/2` to retrieve all entries.
+
+  ## Examples
+
+      iex> proplist = [{"a", 1}]
+      iex> fun = fn ->
+      ...>   :result
+      ...> end
+      iex> Proplist.get_lazy(proplist, "a", fun)
+      1
+      iex> Proplist.get_lazy(proplist, "b", fun)
+      :result
+
+  """
+  @spec get_lazy(t, prop, (() -> value)) :: value
+  def get_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case :lists.keyfind(prop, 1, proplist) do
+      {^prop, value} -> value
+      false -> fun.()
+    end
+  end
+
+  @doc """
+  Gets the value from `prop` and updates it, all in one pass.
+
+  This `fun` argument receives the value of `prop` (or `nil` if `prop`
+  is not present) and must return a two-elements tuple: the "get" value (the
+  retrieved value, which can be operated on before being returned) and the new
+  value to be stored under `prop`.
+
+  The returned value is a tuple with the "get" value returned by `fun` and a new
+  proplist with the updated value under `prop`.
+
+  ## Examples
+
+      iex> Proplist.get_and_update [{"a", 1}], "a", fn(current_value) ->
+      ...>   {current_value, current_value + 1}
+      ...> end
+      {1, [{"a", 2}]}
+
+  """
+  @spec get_and_update(t, prop, (value -> {value, value})) :: {value, t}
+  def get_and_update(proplist, prop, fun) when is_list(proplist) and is_binary(prop) do
+    get_and_update(proplist, [], prop, fun)
+  end
+
+  defp get_and_update([{prop, value}|t], acc, prop, fun) do
+    {get, new_value} = fun.(value)
+    {get, :lists.reverse(acc, [{prop, new_value}|t])}
+  end
+
+  defp get_and_update([head|tail], acc, prop, fun) do
+    get_and_update(tail, [head|acc], prop, fun)
+  end
+
+  defp get_and_update([], acc, prop, fun) do
+    {get, update} = fun.(nil)
+    {get, [{prop, update}|:lists.reverse(acc)]}
+  end
+
+  @doc """
   Fetches the value for a specific `prop` and returns it in a tuple.
 
   If the `prop` does not exist, returns `:error`.
@@ -297,6 +363,30 @@ defmodule Proplist do
   @spec put(t, prop, value) :: t
   def put(proplist, prop, value) when is_list(proplist) and is_binary(prop) do
     [{prop, value}|delete(proplist, prop)]
+  end
+
+  @doc """
+  Evaluates `fun` and puts the result under `prop`
+  in proplist unless `prop` is already present.
+
+  ## Examples
+  
+      iex> proplist = [{"a", 1}]
+      iex> fun = fn ->
+      ...>   3
+      ...> end
+      iex> Proplist.put_new_lazy(proplist, "a", fun)
+      [{"a", 1}]
+      iex> Proplist.put_new_lazy(proplist, "b", fun)
+      [{"b", 3}, {"a", 1}]
+
+  """
+  @spec put_new_lazy(t, prop, (() -> value)) :: t
+  def put_new_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case :lists.keyfind(prop, 1, proplist) do
+      {^prop, _} -> proplist
+      false -> [{prop, fun.()}|proplist]
+    end
   end
 
   @doc """
@@ -561,8 +651,36 @@ defmodule Proplist do
       {1,[]}
 
   """
+  @spec pop(t, prop, value) :: {value, t}
   def pop(proplist, prop, default \\ nil) when is_list(proplist) do
     {get(proplist, prop, default), delete(proplist, prop)}
+  end
+
+  @doc """
+  Returns the first value associated with `prop` in the proplist
+  as well as the proplist without `prop`.
+
+  All duplicated props are removed. See `pop_first/3` for
+  removing only the first entry.
+
+  ## Examples
+
+      iex> proplist = [{"a", 1}]
+      iex> fun = fn ->
+      ...>   :result
+      ...> end
+      iex> Proplist.pop_lazy(proplist, "a", fun)
+      {1, []}
+      iex> Proplist.pop_lazy(proplist, "b", fun)
+      {:result, [{"a", 1}]}
+
+  """
+  @spec pop_lazy(t, prop, (() -> value)) :: {value, t}
+  def pop_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case fetch(proplist, prop) do
+      {:ok, value} -> {value, delete(proplist, prop)}
+      :error -> {fun.(), proplist}
+    end
   end
 
   @doc """
