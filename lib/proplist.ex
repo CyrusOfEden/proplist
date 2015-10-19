@@ -650,6 +650,7 @@ defmodule Proplist do
       {1,[]}
 
   """
+  @spec pop(t, prop, value) :: {value, t}
   def pop(proplist, prop, default \\ nil) when is_list(proplist) do
     {get(proplist, prop, default), delete(proplist, prop)}
   end
