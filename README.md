@@ -20,7 +20,7 @@ Add `proplist` to your deps, then run `$ mix deps.get`.
 
 ```elixir
 def deps do
-  [{:proplist, "~> 0.1"}]
+  [{:proplist, "~> 1.1"}]
 end
 ```
 
