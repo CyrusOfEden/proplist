@@ -119,6 +119,37 @@ defmodule Proplist do
   end
 
   @doc """
+  Gets the value for a specific `prop`.
+
+  If `prop` does not exist, lazily evaluates `fun` and returns its result.
+
+  If duplicated entries exist, the first one is returned.
+  Use `get_values/2` to retrieve all entries.
+
+  ## Examples
+
+      iex> proplist = [{"a", 1}]
+
+      iex> fun = fn ->
+      ...>   :result
+      ...> end
+
+      iex> Proplist.get_lazy(proplist, "a", fun)
+      1
+
+      iex> Proplist.get_lazy(proplist, "b", fun)
+      :result
+
+  """
+  @spec get_lazy(t, prop, (() -> value)) :: value
+  def get_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case :lists.keyfind(prop, 1, proplist) do
+      {^prop, value} -> value
+      false -> fun.()
+    end
+  end
+
+  @doc """
   Fetches the value for a specific `prop` and returns it in a tuple.
 
   If the `prop` does not exist, returns `:error`.
