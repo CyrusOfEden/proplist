@@ -366,6 +366,29 @@ defmodule Proplist do
   end
 
   @doc """
+  Evaluates `fun` and puts the result under `prop`
+  in proplist unless `prop` is already present.
+
+  ## Examples
+      iex> proplist = [{"a", 1}]
+      iex> fun = fn ->
+      ...>   3
+      ...> end
+      iex> Proplist.put_new_lazy(proplist, "a", fun)
+      [{"a", 1}]
+      iex> Proplist.put_new_lazy(proplist, "b", fun)
+      [{"b", 3}, {"a", 1}]
+
+  """
+  @spec put_new_lazy(t, prop, (() -> value)) :: t
+  def put_new_lazy(proplist, prop, fun) when is_list(proplist) and is_binary(prop) and is_function(fun, 0) do
+    case :lists.keyfind(prop, 1, proplist) do
+      {^prop, _} -> proplist
+      false -> [{prop, fun.()}|proplist]
+    end
+  end
+
+  @doc """
   Puts the given `value` under `prop` unless the entry `prop`
   already exists.
 
