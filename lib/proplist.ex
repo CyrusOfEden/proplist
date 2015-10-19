@@ -370,6 +370,7 @@ defmodule Proplist do
   in proplist unless `prop` is already present.
 
   ## Examples
+  
       iex> proplist = [{"a", 1}]
       iex> fun = fn ->
       ...>   3

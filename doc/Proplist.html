@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-        <title>Proplist – Proplist v0.1.1</title>
+        <title>Proplist – Proplist v0.2.0</title>
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc">
@@ -24,7 +24,7 @@
 
   <h1 id="full_list_header">
     
-      <a href="https://github.com/knrz/proplist">Proplist v0.1.1</a>
+      <a href="https://github.com/knrz/proplist">Proplist v0.2.0</a>
     
   </h1>
 
@@ -74,7 +74,7 @@
         <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </button>
-        Proplist v0.1.1 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="Proplist.html#content">Proplist</a>
+        Proplist v0.2.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="Proplist.html#content">Proplist</a>
       </div>
 
       <h1>
@@ -121,7 +121,7 @@ in <code class="inline">Enum</code> and <code class="inline">List</code> can be 
       
 
       
-        <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L1" class="view_source">Source</a>
+        <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L2" class="view_source">Source</a>
       
 
       
@@ -165,6 +165,16 @@ in <code class="inline">Enum</code> and <code class="inline">List</code> can be 
 </tr>
 <tr>
   <td class="summary_signature"><a href="#get/3">get(proplist, prop, default \\ nil)</a></td>
+  <td class="summary_synopsis"><p>Gets the value for a specific <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get_and_update/3">get_and_update(proplist, prop, fun)</a></td>
+  <td class="summary_synopsis"><p>Gets the value from <code class="inline">prop</code> and updates it, all in one pass</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get_lazy/3">get_lazy(proplist, prop, fun)</a></td>
   <td class="summary_synopsis"><p>Gets the value for a specific <code class="inline">prop</code></p>
 </td>
 </tr>
@@ -217,6 +227,12 @@ of <code class="inline">prop</code></p>
 </td>
 </tr>
 <tr>
+  <td class="summary_signature"><a href="#pop_lazy/3">pop_lazy(proplist, prop, fun)</a></td>
+  <td class="summary_synopsis"><p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+as well as the proplist without <code class="inline">prop</code></p>
+</td>
+</tr>
+<tr>
   <td class="summary_signature"><a href="#proplist?/1">proplist?(arg1)</a></td>
   <td class="summary_synopsis"><p>Checks if the given argument is a proplist list or not</p>
 </td>
@@ -238,6 +254,12 @@ already exists</p>
 </td>
 </tr>
 <tr>
+  <td class="summary_signature"><a href="#put_new_lazy/3">put_new_lazy(proplist, prop, fun)</a></td>
+  <td class="summary_synopsis"><p>Evaluates <code class="inline">fun</code> and puts the result under <code class="inline">prop</code>
+in proplist unless <code class="inline">prop</code> is already present</p>
+</td>
+</tr>
+<tr>
   <td class="summary_signature"><a href="#split/2">split(proplist, props)</a></td>
   <td class="summary_synopsis"><p>Takes all entries corresponding to the given props and extracts them into a
 separate proplist list</p>
@@ -255,7 +277,7 @@ proplist list</p>
 </td>
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#update/4">update(list1, prop, initial, fun)</a></td>
+  <td class="summary_signature"><a href="#update/4">update(list, prop, initial, fun)</a></td>
   <td class="summary_synopsis"><p>Updates the <code class="inline">prop</code> with the given function</p>
 </td>
 </tr>
@@ -337,7 +359,7 @@ iex&gt; Proplist.delete([{&quot;b&quot;, 2}], &quot;a&quot;)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L259" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L305" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -372,7 +394,7 @@ iex&gt; Proplist.delete([{&quot;b&quot;, 2}], &quot;a&quot;, 5)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L235" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L283" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -404,7 +426,7 @@ iex&gt; Proplist.delete_first([{&quot;b&quot;, 2}], &quot;a&quot;)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L278" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L329" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -431,7 +453,7 @@ iex&gt; Proplist.drop(d, [&quot;b&quot;, &quot;d&quot;])
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L535" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L608" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -461,7 +483,7 @@ true</code></pre>
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L336" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L412" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -493,7 +515,7 @@ iex&gt; Proplist.fetch([{&quot;a&quot;, 1}], &quot;b&quot;)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L136" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L187" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -525,7 +547,7 @@ iex&gt; Proplist.fetch!([{&quot;a&quot;, 1}], &quot;b&quot;)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L158" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L209" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -562,7 +584,80 @@ iex&gt; Proplist.get([{&quot;a&quot;, 1}], &quot;b&quot;, 3)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L114" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L92" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get_and_update/3">
+    <span class="signature"><strong>get_and_update(proplist, prop, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get_and_update/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get_and_update(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, (<a href="#t:value/0">value</a> -> {<a href="#t:value/0">value</a>, <a href="#t:value/0">value</a>})) :: {<a href="#t:value/0">value</a>, <a href="#t:t/0">t</a>}</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Gets the value from <code class="inline">prop</code> and updates it, all in one pass.</p>
+<p>This <code class="inline">fun</code> argument receives the value of <code class="inline">prop</code> (or <code class="inline">nil</code> if <code class="inline">prop</code>
+is not present) and must return a two-elements tuple: the “get” value (the
+retrieved value, which can be operated on before being returned) and the new
+value to be stored under <code class="inline">prop</code>.</p>
+<p>The returned value is a tuple with the “get” value returned by <code class="inline">fun</code> and a new
+proplist with the updated value under <code class="inline">prop</code>.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Proplist.get_and_update [{&quot;a&quot;, 1}], &quot;a&quot;, fn(current_value) -&gt;
+...&gt;   {current_value, current_value + 1}
+...&gt; end
+{1, [{&quot;a&quot;, 2}]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L149" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get_lazy/3">
+    <span class="signature"><strong>get_lazy(proplist, prop, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get_lazy/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get_lazy(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, (() -> <a href="#t:value/0">value</a>)) :: <a href="#t:value/0">value</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Gets the value for a specific <code class="inline">prop</code>.</p>
+<p>If <code class="inline">prop</code> does not exist, lazily evaluates <code class="inline">fun</code> and returns its result.</p>
+<p>If duplicated entries exist, the first one is returned.
+Use <a href="#get_values/2"><code class="inline">get_values/2</code></a> to retrieve all entries.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; proplist = [{&quot;a&quot;, 1}]
+iex&gt; fun = fn -&gt;
+...&gt;   :result
+...&gt; end
+iex&gt; Proplist.get_lazy(proplist, &quot;a&quot;, fun)
+1
+iex&gt; Proplist.get_lazy(proplist, &quot;b&quot;, fun)
+:result</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L121" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -590,7 +685,7 @@ iex&gt; Proplist.get([{&quot;a&quot;, 1}], &quot;b&quot;, 3)
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L175" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L231" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -621,7 +716,7 @@ false</code></pre>
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L396" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L472" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -650,7 +745,7 @@ false</code></pre>
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L352" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L429" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -681,7 +776,7 @@ false</code></pre>
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L371" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L446" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -706,7 +801,7 @@ false</code></pre>
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L49" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L45" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -737,7 +832,7 @@ Unlike <code class="inline">Enum.into(enumerable, [])</code>,
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L66" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L53" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -761,7 +856,7 @@ Unlike <code class="inline">Enum.into(enumerable, [], fun)</code>,
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L85" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L72" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -773,6 +868,13 @@ Unlike <code class="inline">Enum.into(enumerable, [], fun)</code>,
       <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
     </div>
   </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>pop(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, <a href="#t:value/0">value</a>) :: {<a href="#t:value/0">value</a>, <a href="#t:t/0">t</a>}</li>
+      
+    </ul>
   
   <section class="docstring">
     <p>Returns the first value associated with <code class="inline">prop</code> in the proplist
@@ -797,7 +899,7 @@ iex&gt; Proplist.pop [{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quot;
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L564" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L628" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -833,7 +935,44 @@ iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quo
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L593" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L685" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="pop_lazy/3">
+    <span class="signature"><strong>pop_lazy(proplist, prop, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#pop_lazy/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>pop_lazy(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, (() -> <a href="#t:value/0">value</a>)) :: {<a href="#t:value/0">value</a>, <a href="#t:t/0">t</a>}</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Returns the first value associated with <code class="inline">prop</code> in the proplist
+as well as the proplist without <code class="inline">prop</code>.</p>
+<p>All duplicated props are removed. See <a href="#pop_first/3"><code class="inline">pop_first/3</code></a> for
+removing only the first entry.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; proplist = [{&quot;a&quot;, 1}]
+iex&gt; fun = fn -&gt;
+...&gt;   :result
+...&gt; end
+iex&gt; Proplist.pop_lazy(proplist, &quot;a&quot;, fun)
+{1, []}
+iex&gt; Proplist.pop_lazy(proplist, &quot;b&quot;, fun)
+{:result, [{&quot;a&quot;, 1}]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L658" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -858,7 +997,7 @@ iex&gt; Proplist.pop_first [{&quot;a&quot;, 1}, {&quot;a&quot;, 2}], &quot;a&quo
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L38" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L34" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -890,7 +1029,7 @@ iex&gt; Proplist.props([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L199" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L250" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -923,7 +1062,7 @@ iex&gt; Proplist.put([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}, {&quot;a&quot;, 4}
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L298" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L348" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -955,7 +1094,42 @@ iex&gt; Proplist.put_new([{&quot;a&quot;, 1}, {&quot;b&quot;, 2}], &quot;a&quot;
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L316" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L391" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="put_new_lazy/3">
+    <span class="signature"><strong>put_new_lazy(proplist, prop, fun)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#put_new_lazy/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>put_new_lazy(<a href="#t:t/0">t</a>, <a href="#t:prop/0">prop</a>, (() -> <a href="#t:value/0">value</a>)) :: <a href="#t:t/0">t</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Evaluates <code class="inline">fun</code> and puts the result under <code class="inline">prop</code>
+in proplist unless <code class="inline">prop</code> is already present.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; proplist = [{&quot;a&quot;, 1}]
+iex&gt; fun = fn -&gt;
+...&gt;   3
+...&gt; end
+iex&gt; Proplist.put_new_lazy(proplist, &quot;a&quot;, fun)
+[{&quot;a&quot;, 1}]
+iex&gt; Proplist.put_new_lazy(proplist, &quot;b&quot;, fun)
+[{&quot;b&quot;, 3}, {&quot;a&quot;, 1}]</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L368" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -985,7 +1159,7 @@ iex&gt; Proplist.split(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L485" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L553" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -1013,12 +1187,12 @@ iex&gt; Proplist.take(d, [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;])
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L515" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L587" class="view_source">Source</a>
   
 </section>
 <section class="detail">
   <div class="detail_header" id="update/4">
-    <span class="signature"><strong>update(list1, prop, initial, fun)</strong></span>
+    <span class="signature"><strong>update(list, prop, initial, fun)</strong></span>
     <div class="detail_header_links">
       <span class="detail_type">(function)</span>
       <a href="#update/4" class="detail_link" title="Link to this function">#</a>
@@ -1047,7 +1221,7 @@ iex&gt; Proplist.update([{&quot;a&quot;, 1}], &quot;b&quot;, 11, &amp;(&amp;1 * 
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L452" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L523" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -1081,7 +1255,7 @@ iex&gt; Proplist.update!([{&quot;a&quot;, 1}], &quot;b&quot;, &amp;(&amp;1 * 2))
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L418" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L489" class="view_source">Source</a>
   
 </section>
 <section class="detail">
@@ -1109,7 +1283,7 @@ iex&gt; Proplist.update!([{&quot;a&quot;, 1}], &quot;b&quot;, &amp;(&amp;1 * 2))
 
   </section>
   
-    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L213" class="view_source">Source</a>
+    <a href="https://github.com/knrz/proplist/blob/master/lib/proplist.ex#L269" class="view_source">Source</a>
   
 </section>
 
