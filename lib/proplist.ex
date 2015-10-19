@@ -129,14 +129,11 @@ defmodule Proplist do
   ## Examples
 
       iex> proplist = [{"a", 1}]
-
       iex> fun = fn ->
       ...>   :result
       ...> end
-
       iex> Proplist.get_lazy(proplist, "a", fun)
       1
-
       iex> Proplist.get_lazy(proplist, "b", fun)
       :result
 
@@ -147,6 +144,44 @@ defmodule Proplist do
       {^prop, value} -> value
       false -> fun.()
     end
+  end
+
+  @doc """
+  Gets the value from `prop` and updates it, all in one pass.
+
+  This `fun` argument receives the value of `prop` (or `nil` if `prop`
+  is not present) and must return a two-elements tuple: the "get" value (the
+  retrieved value, which can be operated on before being returned) and the new
+  value to be stored under `prop`.
+
+  The returned value is a tuple with the "get" value returned by `fun` and a new
+  keyword list with the updated value under `prop`.
+
+  ## Examples
+
+      iex> Proplist.get_and_update [{"a", 1}], "a", fn(current_value) ->
+      ...>   {current_value, current_value + 1}
+      ...> end
+      {1, [{"a", 2}]}
+
+  """
+  @spec get_and_update(t, prop, (value -> {value, value})) :: {value, t}
+  def get_and_update(proplist, prop, fun) when is_list(proplist) and is_binary(prop) do
+    get_and_update(proplist, [], prop, fun)
+  end
+
+  defp get_and_update([{prop, value}|t], acc, prop, fun) do
+    {get, new_value} = fun.(value)
+    {get, :lists.reverse(acc, [{prop, new_value}|t])}
+  end
+
+  defp get_and_update([head|tail], acc, prop, fun) do
+    get_and_update(tail, [head|acc], prop, fun)
+  end
+
+  defp get_and_update([], acc, prop, fun) do
+    {get, update} = fun.(nil)
+    {get, [{prop, update}|:lists.reverse(acc)]}
   end
 
   @doc """
