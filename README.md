@@ -30,3 +30,8 @@ Is it any good?
 ---------------
 
 Yes.
+
+Versioning
+----------
+
+From Proplist version `1.1.0`, Proplist will be versioned against the current Elixir version. This means that Proplist `1.1.X` is compatible with Elixir `1.1.X`. Proplist `1.2.X` will be 100% feature-complete relative to Elixir `1.2.X`'s Keyword module, and so on.
