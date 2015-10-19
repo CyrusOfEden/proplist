@@ -12,7 +12,7 @@ defmodule Proplist.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
-     package: [maintainers: ["Kash Nouroozi"],
+     package: [maintainers: ["Kash Nouroozi", "Paul Olteanu"],
                licenses: ["MIT"],
                links: %{"GitHub" => "https://github.com/knrz/proplist"}
     ]]
